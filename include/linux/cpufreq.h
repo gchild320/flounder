@@ -117,6 +117,8 @@ struct cpufreq_policy {
 
 	struct kobject		kobj;
 	struct completion	kobj_unregister;
+
+	unsigned int util;
 };
 
 #define CPUFREQ_ADJUST			(0)
@@ -138,10 +140,19 @@ static inline bool policy_is_shared(struct cpufreq_policy *policy)
 
 /******************** cpufreq transition notifiers *******************/
 
+<<<<<<< HEAD
 #define CPUFREQ_PRECHANGE	(0)
 #define CPUFREQ_POSTCHANGE	(1)
 #define CPUFREQ_RESUMECHANGE	(8)
 #define CPUFREQ_SUSPENDCHANGE	(9)
+=======
+#ifdef CONFIG_CPU_FREQ
+unsigned int cpufreq_get(unsigned int cpu);
+unsigned int cpufreq_quick_get(unsigned int cpu);
+unsigned int cpufreq_quick_get_max(unsigned int cpu);
+unsigned int cpufreq_quick_get_util(unsigned int cpu);
+void disable_cpufreq(void);
+>>>>>>> 8abbe98... cpufreq: add an helper to get/set cpu utilization to be used by mako_hotplug
 
 struct cpufreq_freqs {
 	unsigned int cpu;	/* cpu nr */
@@ -279,12 +290,12 @@ struct cpufreq_driver {
 int cpufreq_register_driver(struct cpufreq_driver *driver_data);
 int cpufreq_unregister_driver(struct cpufreq_driver *driver_data);
 
-
 void cpufreq_notify_transition(struct cpufreq_freqs *freqs, unsigned int state);
 
 void cpufreq_notify_utilization(struct cpufreq_policy *policy, unsigned int load);
 
-static inline void cpufreq_verify_within_limits(struct cpufreq_policy *policy, unsigned int min, unsigned int max)
+static inline void cpufreq_verify_within_limits(struct cpufreq_policy *policy,
+		unsigned int min, unsigned int max)
 {
 	if (policy->min < min)
 		policy->min = min;
