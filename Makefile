@@ -342,11 +342,13 @@ CHECK		= sparse
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
-CFLAGS_MODULE   =
-AFLAGS_MODULE   =
-LDFLAGS_MODULE  =
-CFLAGS_KERNEL	=
-AFLAGS_KERNEL	=
+
+GRAPHITE = -fgraphite-identity -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block -floop-flatten -floop-nest-optimize -floop-unroll-and-jam
+CFLAGS_MODULE   = $(GRAPHITE) -DMODULE -DNDEBUG
+AFLAGS_MODULE   = $(GRAPHITE) -DMODULE -DNDEBUG
+LDFLAGS_MODULE  = $(GRAPHITE) -DMODULE -DNDEBUG
+CFLAGS_KERNEL	= $(GRAPHITE) -DNDEBUG -fsingle-precision-constant
+AFLAGS_KERNEL	=$(GRAPHITE) -DNDEBUG
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
 
@@ -369,7 +371,7 @@ LINUXINCLUDE    := \
 
 KBUILD_CPPFLAGS := -D__KERNEL__
 
-KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
+KBUILD_CFLAGS   := $(GRAPHITE) -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
