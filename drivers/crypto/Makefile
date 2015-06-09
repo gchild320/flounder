@@ -1,3 +1,6 @@
+CFLAGS_KERNEL_ := -fno-strict-aliasing
+CFLAGS_tegra-se.o :- -fno-strict-aliasing
+
 GCOV_PROFILE := y
 
 obj-$(CONFIG_CRYPTO_DEV_PADLOCK_AES) += padlock-aes.o

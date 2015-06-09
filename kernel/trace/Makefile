@@ -1,5 +1,6 @@
 
 # Do not instrument the tracer itself:
+CFLAGS_ring_buffer.o := -fno-strict-aliasing
 
 ifdef CONFIG_FUNCTION_TRACER
 ORIG_CFLAGS := $(KBUILD_CFLAGS)

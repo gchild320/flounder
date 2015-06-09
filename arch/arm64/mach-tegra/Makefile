@@ -1,3 +1,5 @@
+CFLAGS_board-flounder.o := -fno-strict-aliasing
+
 GCOV_PROFILE := y
 
 # Reference the mach-tegra from arch/arm for now

@@ -4,6 +4,7 @@
 # 15 Sep 2000, Christoph Hellwig <hch@infradead.org>
 # Rewritten to use lists instead of if-statements.
 #
+CFLAGS_KERNEL := -fno-strict-aliasing
 
 obj-$(CONFIG_EDP_FRAMEWORK)    += edp/
 obj-$(CONFIG_SYSEDP_FRAMEWORK) += edp/
