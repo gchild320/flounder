@@ -140,19 +140,10 @@ static inline bool policy_is_shared(struct cpufreq_policy *policy)
 
 /******************** cpufreq transition notifiers *******************/
 
-<<<<<<< HEAD
 #define CPUFREQ_PRECHANGE	(0)
 #define CPUFREQ_POSTCHANGE	(1)
 #define CPUFREQ_RESUMECHANGE	(8)
 #define CPUFREQ_SUSPENDCHANGE	(9)
-=======
-#ifdef CONFIG_CPU_FREQ
-unsigned int cpufreq_get(unsigned int cpu);
-unsigned int cpufreq_quick_get(unsigned int cpu);
-unsigned int cpufreq_quick_get_max(unsigned int cpu);
-unsigned int cpufreq_quick_get_util(unsigned int cpu);
-void disable_cpufreq(void);
->>>>>>> 8abbe98... cpufreq: add an helper to get/set cpu utilization to be used by mako_hotplug
 
 struct cpufreq_freqs {
 	unsigned int cpu;	/* cpu nr */
