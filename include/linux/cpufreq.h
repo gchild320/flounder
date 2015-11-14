@@ -346,10 +346,7 @@ u64 get_cpu_idle_time(unsigned int cpu, u64 *wall, int io_busy);
 int cpufreq_get_policy(struct cpufreq_policy *policy, unsigned int cpu);
 int cpufreq_update_policy(unsigned int cpu);
 bool have_governor_per_policy(void);
-<<<<<<< HEAD
 int cpufreq_set_gov(char *target_gov, unsigned int cpu);
-=======
->>>>>>> 4b7d898... cpufreq: governors: Move get_governor_parent_kobj() to cpufreq.c
 struct kobject *get_governor_parent_kobj(struct cpufreq_policy *policy);
 
 #ifdef CONFIG_CPU_FREQ
