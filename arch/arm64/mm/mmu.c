@@ -455,8 +455,11 @@ void __init paging_init(void)
 
 	bootmem_init();
 
-
 	dma_contiguous_remap();
+
+	/* Ensure the zero page is visible to the page table walker */
+	dsb();
+
 	/*
 	 * TTBR0 is only used for the identity mapping at this stage. Make it
 	 * point to zero page to avoid speculatively fetching new entries.
